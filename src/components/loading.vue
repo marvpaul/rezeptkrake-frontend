@@ -1,0 +1,57 @@
+<template>
+    <!-- See this for reference https://codepad.co/snippet/lbEeOEpT-->
+    <div class="l-wrapper" v-if="loading" >
+        <svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <symbol id="s--circle">
+                <circle r="10" cx="20" cy="20"></circle>
+            </symbol>
+            <g class="g-circles g-circles--v1">
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+                <g class="g--circle">
+                    <use xlink:href="#s--circle" class="u--circle"/>
+                </g>
+            </g>
+        </svg>
+    </div>
+</template>
+
+<script>
+  export default{
+    computed:{
+      loading(){
+        return this.$store.state.loading;
+      }
+    }}
+</script>

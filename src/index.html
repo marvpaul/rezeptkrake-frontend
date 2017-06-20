@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Including some stylesheets-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="stylesheet.css" rel="stylesheet">
+    <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="circle.css" rel="stylesheet" type="text/css">
+
+
+    <!--Set meta data-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Rezeptkrake</title>
+
+</head>
+<script src="./controller/ajaxController.js"></script>
+<script src="./model/DataModel.js"></script>
+<script src="./controller/AddIngredient.js"></script>
+<script src="./controller/SearchResultController.js"></script>
+
+
+
+<body>
+<div class="color-overlay">
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+                    <navigation></navigation>
+                    <!--<transition
+                            name="custom-classes-transition"
+                            enter-active-class="animated fadeInLeft"
+                            leave-active-class="animated fadeOutLeft"
+                    >-->
+
+                    <div class="inner cover">
+
+                        <div class="ui-widget" onkeyup="handleNew()">
+                            <label for="tags" class="col-2 col-form-label">Zutaten: </label>
+                            <input id="tags" class="form-control">
+                            <button onclick="addItem()" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Hinz.</button>
+                        </div>
+                        <addedIngredients></addedIngredients>
+                        <p class="lead" style="clear: both;">
+                            Gebe Zutaten und optinal eine Menge ein. Wir suchen für dich das passende Rezept!
+                        </p>
+
+
+                        <p class="lead">
+                            <button class="btn btn-success" id="search-button" onclick="search()" v-if="!loading">
+                                <div id="inner-search-button"><i class="fa fa-search" aria-hidden="true"></i> Los gehts!</div>
+                            </button>
+                            <loading-symbol></loading-symbol>
+                        </p>
+
+
+                    </div>
+                    <results></results>
+                    <footer></footer>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="controller/SearchResultController.js"></script>
+
+<!-- Bootstrap core JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="build.js"></script>
+
+</body>
+</html>
