@@ -24,9 +24,9 @@ a:hover {
  * Base structure
  */
 
-html,
-body {
+html, body {
     height: 100%;
+    /*overflow: hidden;*/
 }
 
 body::before {

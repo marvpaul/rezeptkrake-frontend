@@ -2,18 +2,22 @@
   <div class="color-overlay">
     <div class="app">
       <div class="site-wrapper">
-        <div class="site-wrapper-inner">
+        <div class="site-wrapper-inner" style="padding-top: 5em;">
 
-          <results></results>
+
 
           <div class="cover-container">
 
+
             <navigation></navigation>
+
 
             <search></search>
 
           </div>
+          <results></results>
         </div>
+
       </div>
     </div>
   </div>

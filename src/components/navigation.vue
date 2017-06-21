@@ -47,4 +47,7 @@
     width: 6%;
     float: left;
   }
+  .masthead{
+    position: absolute;
+  }
 </style>
