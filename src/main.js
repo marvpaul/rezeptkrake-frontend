@@ -1,7 +1,7 @@
 /**
  * In this file all required components will be loaded
  * A Vuex Store is defined for communication with several components
- * Also the main app is loaded into vue here :) 
+ * Also the main app is loaded into vue here :)
  */
 import Vue from 'vue'
 import Vuex from 'vuex';

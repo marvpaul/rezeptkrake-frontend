@@ -1,28 +1,30 @@
 <template>
-  <transition
-    name="custom-classes-transition"
-    enter-active-class="animated fadeInLeft"
-    leave-active-class="animated fadeOutLeft"
-  >
-    <div v-if="!showResults">
+<transition
+  name="custom-classes-transition"
+  enter-active-class="animated fadeInLeft"
+  leave-active-class="animated fadeOutLeft"
+>
+  <div v-if="!showResults">
+      <searchbar></searchbar>
+      <addedIngredients></addedIngredients>
 
-      <div class="inner cover">
+      <p class="lead" style="clear: both;">
+        Gebe Zutaten und optinal eine Menge ein. Wir suchen für dich das passende Rezept!
+      </p>
 
-        <searchbar></searchbar>
-        <addedIngredients></addedIngredients>
-        <p class="lead" style="clear: both;">
-          Gebe Zutaten und optinal eine Menge ein. Wir suchen für dich das passende Rezept!
-        </p>
+      <!--TODO: Bug with align Use vue transition hooks-->
+      <startButton></startButton>
+      <loading-symbol></loading-symbol>
 
-
-        <startButton></startButton>
-        <loading-symbol></loading-symbol>
-
-      </div>
 
       <footerComp></footerComp>
-    </div>
-  </transition>
+
+  </div>
+</transition>
+
+
+
+
 
 </template>
 

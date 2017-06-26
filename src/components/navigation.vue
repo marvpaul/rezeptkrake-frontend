@@ -28,15 +28,27 @@
     methods:{
       showResults(){
         //if(recipes.length > 0){
+        if(this.$data.searchPage == 'nav-link active'){
           this.$store.state.showResults = true;
           this.$data.searchPage = 'nav-link';
           this.$data.resultPage = 'nav-link active';
+          $('body').css('height', 'auto');
+        }
+
         //}
       },
       showSearch(){
-        this.$store.state.showResults = false;
-        this.$data.searchPage = 'nav-link active';
-        this.$data.resultPage = 'nav-link';
+        if(this.$data.resultPage == 'nav-link active') {
+          this.$store.state.showResults = false;
+          this.$data.searchPage = 'nav-link active';
+          this.$data.resultPage = 'nav-link';
+          $('body').css('height', '100%');
+        }
+      },
+      greet(){
+        // `this` inside methods points to the Vue instance
+        alert('Hello ' + this.name + '!')
+
       }
     }
   };

@@ -3,21 +3,20 @@
     <div class="app">
       <div class="site-wrapper">
         <div class="site-wrapper-inner" style="padding-top: 5em;">
-
-
-
           <div class="cover-container">
-
 
             <navigation></navigation>
 
+            <div class="inner cover">
 
-            <search></search>
+              <search></search>
 
+            </div>
           </div>
-          <results></results>
-        </div>
 
+          <results></results>
+
+        </div>
       </div>
     </div>
   </div>

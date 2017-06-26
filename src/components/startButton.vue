@@ -18,7 +18,8 @@
       setLoading(){
         this.$store.state.loading = true;
         this.$store.state.showResults = true;
-        alert(this.$store.state.showResults);
+        $('body').css('height', 'auto');
+
       }
     }
   }
