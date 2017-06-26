@@ -26,6 +26,7 @@
       }
     },
     methods:{
+      //TODO: Make this method global so that nav changes every time the page changes
       showResults(){
         //if(recipes.length > 0){
         if(this.$data.searchPage == 'nav-link active'){
@@ -44,11 +45,6 @@
           this.$data.resultPage = 'nav-link';
           $('body').css('height', '100%');
         }
-      },
-      greet(){
-        // `this` inside methods points to the Vue instance
-        alert('Hello ' + this.name + '!')
-
       }
     }
   };

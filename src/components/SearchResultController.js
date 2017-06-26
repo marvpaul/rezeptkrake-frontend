@@ -2,7 +2,6 @@
  * TODO: Add a routing for search --> http://router.vuejs.org/en/essentials/getting-started.html
  */
 var nResult;
-//TODO: Something went wrong for parsing with Knoblauch
 function viewResults(result){
     nResult = JSON.parse(result);
     for(i = 0; i < nResult["recipes"].length; i++){
