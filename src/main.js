@@ -57,7 +57,6 @@ export const store = new Vuex.Store({
   actions: {
     loadRecipesAsync (state, addedItems) {
       //Ajax goes here
-      state.loading = true;
       let url = "http://localhost:8090/ingredientsSearch?";
       for(let i = 0; i < addedItems.length; i++) {
         if(addedItems[i][2].text == ""){
@@ -69,7 +68,6 @@ export const store = new Vuex.Store({
       }
       // GET /someUrl
       $.ajax({url: url, success: function(result){
-        alert("Done so far :) ");
         //state.loading = false;
         //router.push('results');
         alert(result);
@@ -98,6 +96,7 @@ export const store = new Vuex.Store({
       if(result["recipes"] !== undefined) {
         state.addedItems = [[]];
         state.recipes = [[]];
+        state.loading = false;
         for (let i = 0; i < result["recipes"].length; i++) {
           if (state.recipes[0].length == 0) {
             state.recipes[0].push(result["recipes"][i]["recipeName"]);
@@ -111,8 +110,9 @@ export const store = new Vuex.Store({
           }
         }
       }
-
-
+    },
+    resetRecipes(state){
+      state.recipes = { ...state.recipes, newProp: [[]] };
     },
     setAddedIngredient(state, ingredient){
       //TODO: In case the ingredient exists already, ignore :)

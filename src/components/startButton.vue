@@ -19,9 +19,12 @@
     },
     methods: {
       setLoading(){
+        //TODO: Reset the recipes and set a loading icon
+        this.$store.commit('resetRecipes');
+        this.$store.state.loading = true;
         this.$router.push('results');
         this.$store.dispatch('loadRecipesAsync', this.$store.state.addedItems);
-        //this.$store.state.loading = true;
+        //
         //this.$store.state.showResults = true;
         //$('body').css('height', 'auto');
 

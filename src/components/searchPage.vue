@@ -17,7 +17,7 @@
 
       <!--TODO: Bug with align Use vue transition hooks-->
       <startButton></startButton>
-      <loading-symbol></loading-symbol>
+
 
 
       <!-- TODO: make align alright -->

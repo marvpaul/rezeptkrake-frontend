@@ -30,28 +30,6 @@
       recipes(){
         return this.$store.state.recipes;
       }
-    },
-    methods:{
-      //TODO: Make this method global so that nav changes every time the page changes
-      showResults(){
-        //if(recipes.length > 0){
-        if(this.$data.searchPage == 'nav-link active'){
-          this.$store.state.showResults = true;
-          this.$data.searchPage = 'nav-link';
-          this.$data.resultPage = 'nav-link active';
-          $('body').css('height', 'auto');
-        }
-
-        //}
-      },
-      showSearch(){
-        if(this.$data.resultPage == 'nav-link active') {
-          this.$store.state.showResults = false;
-          this.$data.searchPage = 'nav-link active';
-          this.$data.resultPage = 'nav-link';
-          $('body').css('height', '100%');
-        }
-      }
     }
   };
 </script>
