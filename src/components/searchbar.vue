@@ -5,7 +5,7 @@
       <!--<input type="text" class="autocomplete" v-on:keyup="autocompletionRequest()"/>-->
     <auto></auto>
 
-    <button class="btn btn-primary" v-on:click="addIngredient()"><i class="fa fa-plus"></i>Hinz.</button>
+    <!--<button class="btn btn-primary" v-on:click="addIngredient()"><i class="fa fa-plus"></i>Hinz.</button>-->
   </div>
 </template>
 

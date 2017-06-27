@@ -7,7 +7,7 @@ import Vue from 'vue'
 import Vuex from 'vuex';
 import Axios from 'axios'
 
-Vue.prototype.$http = Axios
+Vue.prototype.$http = Axios;
 
 import App from './App'
 import router from './router'
@@ -67,11 +67,12 @@ export const store = new Vuex.Store({
         }
 
       }
+      // GET /someUrl
       $.ajax({url: url, success: function(result){
         alert("Done so far :) ");
-        state.loading = false;
+        //state.loading = false;
         //router.push('results');
-        console.log(result);
+        alert(result);
         state.commit('setRecipes', result);
       }});
 
@@ -93,23 +94,28 @@ export const store = new Vuex.Store({
   },
   mutations: {
     setRecipes(state, result){
-      let nResult = (JSON.parse(result));
-      state.addedItems = [[]];
-      state.recipes = [[]];
-      for(let i = 0; i < nResult["recipes"].length; i++) {
-        if (state.recipes[0].length == 0) {
-          state.recipes[0].push(nResult["recipes"][i]["recipeName"]);
-          state.recipes[0].push(nResult["recipes"][i]["link"]);
-          state.recipes[0].push(nResult["recipes"][i]["imageLink"]);
-          state.recipes[0].push(nResult["recipes"][i]["matchPercentage"]);
-          state.recipes[0].push(nResult["recipes"][i]["matchedIngredients"]);
-          state.recipes[0].push(nResult["recipes"][i]["unMatchedIngredients"]);
-        } else {
-          state.recipes.push([nResult["recipes"][i]["recipeName"], nResult["recipes"][i]["link"], nResult["recipes"][i]["imageLink"], nResult["recipes"][i]["matchPercentage"], nResult["recipes"][i]["matchedIngredients"], nResult["recipes"][i]["unMatchedIngredients"]]);
+      result = JSON.parse(result);
+      if(result["recipes"] !== undefined) {
+        state.addedItems = [[]];
+        state.recipes = [[]];
+        for (let i = 0; i < result["recipes"].length; i++) {
+          if (state.recipes[0].length == 0) {
+            state.recipes[0].push(result["recipes"][i]["recipeName"]);
+            state.recipes[0].push(result["recipes"][i]["link"]);
+            state.recipes[0].push(result["recipes"][i]["imageLink"]);
+            state.recipes[0].push(result["recipes"][i]["matchPercentage"]);
+            state.recipes[0].push(result["recipes"][i]["matchedIngredients"]);
+            state.recipes[0].push(result["recipes"][i]["unMatchedIngredients"]);
+          } else {
+            state.recipes.push([result["recipes"][i]["recipeName"], result["recipes"][i]["link"], result["recipes"][i]["imageLink"], result["recipes"][i]["matchPercentage"], result["recipes"][i]["matchedIngredients"], result["recipes"][i]["unMatchedIngredients"]]);
+          }
         }
       }
+
+
     },
     setAddedIngredient(state, ingredient){
+      //TODO: In case the ingredient exists already, ignore :)
           if(state.addedItems[0].length == 0){
             state.addedItems[0].push({text : ingredient[0]})
             state.addedItems[0].push({text : ingredient[1]});

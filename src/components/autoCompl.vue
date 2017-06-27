@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div style="width: 30%; margin: auto; ">
     <!-- optional indicators -->
     <i class="fa fa-spinner fa-spin" v-if="loading"></i>
     <template v-else>
       <i class="fa fa-search" v-show="isEmpty"></i>
       <i class="fa fa-times" v-show="isDirty" @click="reset"></i>
     </template>
-
     <!-- the input field -->
     <input type="text"
            placeholder="..."
@@ -90,21 +89,24 @@
 
 <style scoped>
   ul {
-    text: black;
+    position: absolute;
+    display: block;
+    margin: auto;
+    min-width: 12%;
     padding: 0;
-    margin-top: 8px;
+    margin-top: 1%;
     background-color: #fff;
     list-style: none;
-    border-radius: 4px;
+    border-radius: 1%;
     box-shadow: 0 0 10px rgba(0,0,0, 0.25);
     z-index: 1000;
   }
   li {
-    padding: 10px 16px;
+    padding: 1%;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
-    background: gray;
-    text: black;
+    background: white;
+    color: black;
   }
   li:first-child {
     border-top-left-radius: 4px;
@@ -117,12 +119,12 @@
   }
   span {
     display: block;
-    color: #2c3e50;
+    color: black;
   }
   .active {
     background-color: #3aa373;
   }
   .active span {
-    color: gray;
+    color: #ffffff;
   }
 </style>
