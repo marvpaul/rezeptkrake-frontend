@@ -12,12 +12,15 @@
     computed: {
       showProp(){
         return this.$store.state.showResults;
+      },
+      addedItems(){
+        return this.$store.state.addedItems;
       }
     },
     methods: {
       setLoading(){
         this.$router.push('results');
-        this.$store.dispatch('loadRecipesAsync');
+        this.$store.dispatch('loadRecipesAsync', this.$store.state.addedItems);
         //this.$store.state.loading = true;
         //this.$store.state.showResults = true;
         //$('body').css('height', 'auto');

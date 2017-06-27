@@ -5,6 +5,9 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex';
+import Axios from 'axios'
+
+Vue.prototype.$http = Axios
 
 import App from './App'
 import router from './router'
@@ -35,6 +38,10 @@ Vue.component('results',resultComp)
 import searchPage from './components/searchPage.vue'
 Vue.component('search',searchPage)
 
+import autoCompl from './components/autoCompl.vue'
+Vue.component('auto',autoCompl)
+
+
 Vue.use(Vuex);
 
 
@@ -48,52 +55,47 @@ export const store = new Vuex.Store({
     autocomplete: []
   },
   actions: {
-    loadRecipesAsync (state) {
-      alert('Hallo');
+    loadRecipesAsync (state, addedItems) {
       //Ajax goes here
-      /*
       state.loading = true;
-      url = "ingredientsSearch?";
-      for(i = 0; i < state.addedItems.length; i++){
-        url += "ingredient=" + state.addedItems[i][0].text + "&amount=" + state.addedItems[i][2].text + "&";
+      let url = "http://localhost:8090/ingredientsSearch?";
+      for(let i = 0; i < addedItems.length; i++) {
+        if(addedItems[i][2].text == ""){
+          url += "ingredient=" + addedItems[i][0].text + "&amount=" + "0"  + "&";
+        } else{
+          url += "ingredient=" + addedItems[i][0].text + "&amount=" + addedItems[i][2].text + "&";
+        }
+
       }
       $.ajax({url: url, success: function(result){
+        alert("Done so far :) ");
         state.loading = false;
-        this.$router.push('results');
+        //router.push('results');
         console.log(result);
-        state.commit('setRecipes', JSON.parse(result));
-
+        state.commit('setRecipes', result);
       }});
-       */
-      let nRecipes = "Sth";
-      state.commit('setRecipes', nRecipes)
+
 
 
     },
     loadAutocompletion(state, value){
-      /*$.ajax({url: "ajax?query=" + $('input').val(), success: function(result){
-       ingredientsAndId = JSON.parse(result);
-       ingredients = new Array;
-       console.log(ingredientsAndId);
-       for (i = 0; i < ingredientsAndId.length; i++){
-       ingredients[i] = ingredientsAndId[i][1];
-       }
-
-       console.log(ingredients);
-       this.$store.state.completionIngredients = ingredientsAndId;
-       $(this.$refs.autocomplete).typeahead({ source:ingredients });
-       }});*/
+      $.ajax({url: "http://localhost:8090/ajax?query=" + value, success: function(result){
+       let ingredientsAndId = JSON.parse(result);
+        console.log(ingredientsAndId);
+        state.commit('setAutocompletion', ingredientsAndId);
+       }});
       //This is just for test purposes
-      let result = '[["3308"," Sauerkirschen","glas"],["3487"," Sardellen","stueck"],["3925"," Salzstangen","g"],["6507"," Salicorne","g"],["6867"," Sauerteig","g"],["7900"," Salpeter","g"],["9145"," Salzkartoffeln","n. b."],["9321"," Sauermilch",""],["9768"," Salatcreme","el"],["9880"," Salzwasser",""]]';
-      let ingredientsAndId = JSON.parse(result);
+      //let result = '[["3308"," Sauerkirschen","glas"],["3487"," Sardellen","stueck"],["3925"," Salzstangen","g"],["6507"," Salicorne","g"],["6867"," Sauerteig","g"],["7900"," Salpeter","g"],["9145"," Salzkartoffeln","n. b."],["9321"," Sauermilch",""],["9768"," Salatcreme","el"],["9880"," Salzwasser",""]]';
+      //let ingredientsAndId = JSON.parse(result);
 
-      state.commit('setAutocompletion', ingredientsAndId);
+
     }
   },
   mutations: {
-    setRecipes (state, result) {
+    setRecipes(state, result){
       let nResult = (JSON.parse(result));
-
+      state.addedItems = [[]];
+      state.recipes = [[]];
       for(let i = 0; i < nResult["recipes"].length; i++) {
         if (state.recipes[0].length == 0) {
           state.recipes[0].push(nResult["recipes"][i]["recipeName"]);
@@ -107,8 +109,22 @@ export const store = new Vuex.Store({
         }
       }
     },
+    setAddedIngredient(state, ingredient){
+          if(state.addedItems[0].length == 0){
+            state.addedItems[0].push({text : ingredient[0]})
+            state.addedItems[0].push({text : ingredient[1]});
+            state.addedItems[0].push({text : ""});
+            state.addedItems[0].push({text : ingredient[2]});
+          }
+          else {
+            state.addedItems.push([{text: ingredient[0]},
+              {text: ingredient[1]},
+              {text: ""},
+              {text: ingredient[2]}]);
+          }
+    },
     setAutocompletion(state, ingredientsAndId){
-            let ingredients = new Array;
+      let ingredients = new Array;
       for (let i = 0; i < ingredientsAndId.length; i++){
         let isAlreadyAdded = false;
         if(state.addedItems[0].length > 1) {
@@ -128,6 +144,7 @@ export const store = new Vuex.Store({
       }
       state.completionIngredients = ingredientsAndId;
       state.autocomplete = ingredients;
+      //improve the autocompletion
       $('.autocomplete').data('typeahead').source = state.autocomplete;
     }
   },
@@ -141,3 +158,5 @@ var vue = new Vue({
   template: '<App/>',
   components: {App}
 })
+
+

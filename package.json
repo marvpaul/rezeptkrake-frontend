@@ -11,10 +11,14 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
     "jquery": "^3.2.1",
     "jquery-ui": "^1.12.1",
+    "typeahead.js": "^0.11.1",
     "vue": "^2.3.3",
-    "vue-router": "^2.3.1"
+    "vue-router": "^2.3.1",
+    "vue-typeahead": "^2.3.2",
+    "vuejs-autocomplete": "^0.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

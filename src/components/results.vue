@@ -13,7 +13,7 @@
             <br>
             <span class="badge badge-danger" v-for="unMatchedIngredient in recipe[5]">{{unMatchedIngredient}} </span>
             <div class="progress">
-              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 7%;" :aria-valuenow="recipe[3]*100" aria-valuemin="0" aria-valuemax="100">{{recipe[3]*100}}</div>
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" :style="'width: ' + recipe[3]*100 + '%;'" :aria-valuenow="recipe[3]*100" aria-valuemin="0" aria-valuemax="100">{{recipe[3]*100}}</div>
             </div>
           </div>
         </div>

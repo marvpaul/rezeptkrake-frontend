@@ -2,7 +2,8 @@
   <div class="app-searchbar">
     <label>Zutaten: </label>
 
-      <input type="text" class="autocomplete" v-on:keyup="autocompletionRequest()"/>
+      <!--<input type="text" class="autocomplete" v-on:keyup="autocompletionRequest()"/>-->
+    <auto></auto>
 
     <button class="btn btn-primary" v-on:click="addIngredient()"><i class="fa fa-plus"></i>Hinz.</button>
   </div>
@@ -12,6 +13,7 @@
   import $ from 'jquery';
   import 'bootstrap-3-typeahead';
 
+  //TODO: reset all ingredients after performing a search
   export default{
     mounted () {
       $('.autocomplete').typeahead({ source:this.$store.state.autocomplete });

@@ -12,11 +12,23 @@
           <router-view></router-view>
 
 
+
+
         </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+  export default{
+    methods: {
+      done(){
+        alert("Done");
+
+      }
+    }
+  }
+</script>
 
 <style>
   @import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
@@ -25,6 +37,11 @@
   @import "./assets/circle.css";
   @import "https://unpkg.com/animate.css@3.5.1/animate.min.css";
 
+  .tt-open{
+    background: white;
+    color: black;
+    width: 100%;
+  }
   .app{
     height: 100%;
   }

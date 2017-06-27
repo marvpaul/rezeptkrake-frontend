@@ -20,7 +20,8 @@
       <loading-symbol></loading-symbol>
 
 
-      <footerComp></footerComp>
+      <!-- TODO: make align alright -->
+      <!--<footerComp></footerComp>-->
 
     </div>
 </div>
