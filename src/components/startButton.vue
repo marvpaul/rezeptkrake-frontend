@@ -16,9 +16,11 @@
     },
     methods: {
       setLoading(){
-        this.$store.state.loading = true;
-        this.$store.state.showResults = true;
-        $('body').css('height', 'auto');
+        this.$router.push('results');
+        this.$store.dispatch('loadRecipesAsync');
+        //this.$store.state.loading = true;
+        //this.$store.state.showResults = true;
+        //$('body').css('height', 'auto');
 
       }
     }

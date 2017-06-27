@@ -7,14 +7,10 @@
 
             <navigation></navigation>
 
-            <div class="inner cover">
 
-              <search></search>
-
-            </div>
           </div>
+          <router-view></router-view>
 
-          <results></results>
 
         </div>
       </div>

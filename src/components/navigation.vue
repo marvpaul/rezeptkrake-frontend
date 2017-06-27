@@ -5,8 +5,14 @@
             <div class="inner">
                 <img src="../assets/krake.png" class="icon-krake"> <h3 class="masthead-brand" href="http://www.freepik.com/free-vector/octopus-icon_766812.htm">  Rezeptkrake Zutatensuche</h3>
                 <nav class="nav nav-masthead">
-                    <a :class="searchPage" href="#" @click="showSearch()">Suche</a>
-                    <a :class="resultPage" href="#" @click="showResults()">Suchergebnisse</a>
+
+                    <router-link class="nav-link" active-class="active" to="/" exact>
+                    <a>Suche</a>
+                    </router-link>
+                  <router-link class="nav-link" active-class="active" to="/results/" exact>
+                    <a>Suchergebnisse</a>
+                  </router-link>
+
                 </nav>
             </div>
         </div>

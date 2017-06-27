@@ -4,7 +4,10 @@
   enter-active-class="animated fadeInLeft"
   leave-active-class="animated fadeOutLeft"
 >
-  <div v-if="!showResults">
+  <div class="cover-container">
+
+    <div class="inner cover">
+
       <searchbar></searchbar>
       <addedIngredients></addedIngredients>
 
@@ -19,7 +22,9 @@
 
       <footerComp></footerComp>
 
-  </div>
+    </div>
+</div>
+
 </transition>
 
 
