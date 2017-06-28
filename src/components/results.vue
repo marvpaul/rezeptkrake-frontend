@@ -8,6 +8,9 @@
     >
       <div id="results" v-if="!loading">
 
+        <!-- This is a result card with an image and matched ingredients -->
+        <!-- TODO: Refactor to a standalone component -->
+        <!-- TODO: In case there is no result / at beginning, just show nothing or default no found message :) -->
         <div class="card" @click="openPage(recipe[1]) " v-for="recipe in recipes">
           <div id="card-block">
             <img class="card-img-top preview" :src="recipe[2]">
@@ -20,10 +23,10 @@
             </div>
           </div>
         </div>
+
       </div>
     </transition>
   </div>
-
 </template>
 
 <script>
@@ -38,9 +41,6 @@
       }
     },
     computed:{
-      showResults(){
-        return this.$store.state.showResults;
-      },
       recipes(){
         return this.$store.state.recipes;
       },

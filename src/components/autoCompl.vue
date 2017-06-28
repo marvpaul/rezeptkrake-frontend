@@ -33,7 +33,6 @@
 
   export default {
     extends: VueTypeahead, // vue@1.0.22+
-    // mixins: [VueTypeahead], // vue@1.0.21-
 
     data () {
       return {
@@ -65,14 +64,13 @@
 
     methods: {
       // The callback function which is triggered when the user hits on an item
-      // (required)
       onHit (item) {
          console.log(item);
          this.$store.commit('setAddedIngredient', item);
       },
 
       // The callback function which is triggered when the response data are received
-      // (optional)
+      // Here all data will be saved in completionIngredients variable in the store
       prepareResponseData (data) {
         let ingredientsAndId = JSON.parse(JSON.stringify(data));
         let ingredients = new Array;
@@ -80,7 +78,6 @@
             ingredients[i] = {text: ingredientsAndId[i][1]};
         }
         this.$store.state.completionIngredients = ingredientsAndId;
-        this.$store.state.autocomplete = ingredients;
         return ingredientsAndId;
       }
     }
