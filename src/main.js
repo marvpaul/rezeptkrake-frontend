@@ -40,6 +40,7 @@ Vue.component('search',searchPage)
 import autoCompl from './components/autoCompl.vue'
 Vue.component('auto',autoCompl)
 
+import $ from 'jquery';
 
 
 
