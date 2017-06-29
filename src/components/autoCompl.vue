@@ -38,7 +38,7 @@
       return {
         // The source url
         // (required)
-        src: 'http://localhost:8090/ajax',
+        src: '/ajax',
         // The data that would be sent by request
         // (optional)
         data: {},

@@ -56,7 +56,7 @@ export const store = new Vuex.Store({
   actions: {
     loadRecipesAsync (state, addedItems) {
       //Ajax goes here
-      let url = "http://localhost:8090/ingredientsSearch?";
+      let url = "/ingredientsSearch?";
       for(let i = 0; i < addedItems.length; i++) {
         if(addedItems[i][2].text == ""){
           //In case there isn't an amount
@@ -75,7 +75,7 @@ export const store = new Vuex.Store({
       }});
     },
     loadAutocompletion(state, value){
-      $.ajax({url: "http://localhost:8090/ajax?query=" + value, success: function(result){
+      $.ajax({url: "/ajax?query=" + value, success: function(result){
        let ingredientsAndId = JSON.parse(result);
         console.log(ingredientsAndId);
         state.commit('setAutocompletion', ingredientsAndId);
