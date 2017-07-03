@@ -40,6 +40,9 @@ Vue.component('search',searchPage)
 import autoCompl from './components/autoCompl.vue'
 Vue.component('auto',autoCompl)
 
+import errorComp from './components/error.vue'
+Vue.component('error',errorComp)
+
 import $ from 'jquery';
 
 
@@ -51,12 +54,13 @@ export const store = new Vuex.Store({
     showResults: false,
     loading: false,
     recipes:[[]],
-    completionIngredients: [[]]
+    completionIngredients: [[]],
+    failure: false
   },
   actions: {
     loadRecipesAsync (state, addedItems) {
       //Ajax goes here
-      let url = "/ingredientsSearch?";
+      let url = "http://localhost:8090/ingredientsSearch?";
       for(let i = 0; i < addedItems.length; i++) {
         if(addedItems[i][2].text == ""){
           //In case there isn't an amount
@@ -68,14 +72,18 @@ export const store = new Vuex.Store({
       }
       // GET some ResultObject from the server (hopefully ;))
       $.ajax({url: url, success: function(result){
-        //state.loading = false;
-        //router.push('results');
-        alert(result);
-        state.commit('setRecipes', result);
-      }});
+        if(result == ""){
+          state.commit('failedLoadingRecipes');
+        } else{
+          state.commit('setRecipes', result);
+        }
+
+      }, fail: function(){
+          state.failure = true;
+        }});
     },
     loadAutocompletion(state, value){
-      $.ajax({url: "/ajax?query=" + value, success: function(result){
+      $.ajax({url: "ajax?query=" + value, success: function(result){
        let ingredientsAndId = JSON.parse(result);
         console.log(ingredientsAndId);
         state.commit('setAutocompletion', ingredientsAndId);
@@ -88,10 +96,10 @@ export const store = new Vuex.Store({
   mutations: {
     setRecipes(state, result){
       result = JSON.parse(result);
+      state.loading = false;
       if(result["recipes"] !== undefined) {
         state.addedItems = [[]];
         state.recipes = [[]];
-        state.loading = false;
         for (let i = 0; i < result["recipes"].length; i++) {
           if (state.recipes[0].length == 0) {
             state.recipes[0].push(result["recipes"][i]["recipeName"]);
@@ -104,6 +112,19 @@ export const store = new Vuex.Store({
             state.recipes.push([result["recipes"][i]["recipeName"], result["recipes"][i]["link"], result["recipes"][i]["imageLink"], result["recipes"][i]["matchPercentage"], result["recipes"][i]["matchedIngredients"], result["recipes"][i]["unMatchedIngredients"]]);
           }
         }
+      } else{
+        state.failure = true;
+      }
+    },
+    failedLoadingRecipes(state){
+      state.loading = false;
+      state.failure = true;
+    },
+    removeIngredient (state, id) {
+      for(let i = 0; i < state.addedItems.length; i++){
+        if(id == state.addedItems[i][0]['text']){
+          state.addedItems.splice(i, 1);
+        }
       }
     },
     resetRecipes(state){
@@ -111,7 +132,7 @@ export const store = new Vuex.Store({
     },
     setAddedIngredient(state, ingredient){
       //TODO: In case the ingredient exists already, ignore :)
-          if(state.addedItems[0].length == 0){
+          if(state.addedItems.length != 0 && state.addedItems[0].length == 0){
             state.addedItems[0].push({text : ingredient[0]})
             state.addedItems[0].push({text : ingredient[1]});
             state.addedItems[0].push({text : ""});

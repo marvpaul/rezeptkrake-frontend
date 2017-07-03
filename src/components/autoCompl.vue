@@ -20,7 +20,6 @@
 
     <!-- the list -->
     <ul v-show="hasItems">
-      <!-- for vue@1.0 use: ($item, item) -->
       <li v-for="(item, $item) in items" :class="activeClass($item)" @mousedown="hit" @mousemove="setActive($item)">
         <span v-text="item[1]"></span>
       </li>
@@ -38,7 +37,7 @@
       return {
         // The source url
         // (required)
-        src: '/ajax',
+        src: 'http://localhost:8090/ajax',
         // The data that would be sent by request
         // (optional)
         data: {},

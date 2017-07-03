@@ -1,12 +1,13 @@
 <template>
   <div>
     <div><loading-symbol></loading-symbol></div>
+    <div><error></error></div>
     <transition
       name="custom-classes-transition"
       enter-active-class="animated fadeInRight"
       leave-active-class="animated fadeOutRight"
     >
-      <div id="results" v-if="!loading">
+      <div id="results" v-if="!loading && !failure">
 
         <!-- This is a result card with an image and matched ingredients -->
         <!-- TODO: Refactor to a standalone component -->
@@ -46,6 +47,9 @@
       },
       loading(){
         return this.$store.state.loading;
+      },
+      failure(){
+        return this.$store.state.failure;
       }
     }};
 
